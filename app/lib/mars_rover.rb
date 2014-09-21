@@ -24,7 +24,10 @@ class MarsRover
   end
 
   def move
-    @y_pos = @y_pos + 1
+    @y_pos = @y_pos + 1 if @direction == 'N'
+    @x_pos = @x_pos + 1 if @direction == 'E'
+    @y_pos = @y_pos - 1 if @direction == 'S'
+    @x_pos = @x_pos - 1 if @direction == 'W'
   end
 
   def turn_left
