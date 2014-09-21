@@ -8,4 +8,8 @@ describe 'MarsRover' do
   it 'should move rover around' do
     @rover.execute('MM').should == '1 3 N'
   end
+
+  it 'should turn rover right' do
+    @rover.execute('RRR').should == '1 1 W'
+  end
 end
