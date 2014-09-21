@@ -12,4 +12,8 @@ describe 'MarsRover' do
   it 'should turn rover right' do
     @rover.execute('RRR').should == '1 1 W'
   end
+
+  it 'should turn rover left' do
+    @rover.execute('LLL').should == '1 1 E'
+  end
 end

@@ -1,6 +1,7 @@
 class MarsRover
   $directions = %w(N E S W)
   attr_accessor :x_pos, :y_pos, :direction
+
   def initialize(x, y, direction)
     @x_pos = x
     @y_pos = y
@@ -27,10 +28,10 @@ class MarsRover
   end
 
   def turn_left
-    # code here
+    @direction = $directions[($directions.find_index(@direction)+3) % $directions.length]
   end
 
   def turn_right
-    @direction = $directions[($directions.find_index(@direction)+1) % $directions.length ]
+    @direction = $directions[($directions.find_index(@direction)+1) % $directions.length]
   end
 end
