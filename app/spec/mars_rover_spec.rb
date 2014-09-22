@@ -21,4 +21,12 @@ describe 'MarsRover' do
     @rover.execute('MRMRMRMR').should == '1 1 N'
     @rover.execute('LRLRLRLR').should == '1 1 N'
   end
+
+  # it 'should reject invalid arguments' do
+  #   begin
+  #     expect @rover.execute('sth. invalid').to ArgumentError, 'invalid commands'
+  #   rescue Exception => e
+  #     p e.message
+  #   end
+  # end
 end

@@ -1,6 +1,6 @@
 class MarsRover
-  $directions = %w(N E S W)
-  attr_accessor :x_pos, :y_pos, :direction
+  DIRECTIONS = %w(N E S W)
+  attr_reader :x_pos, :y_pos, :direction
 
   def initialize(x, y, direction)
     @x_pos = x
@@ -10,16 +10,17 @@ class MarsRover
 
   def execute(cmd)
     directives = cmd.split(//)
-    directives.each {
-        |directive|
+    directives.each do |directive|
       if directive == 'M'
         move
       elsif directive == 'R'
         turn_right
       elsif directive == 'L'
         turn_left
+      # else
+      #   raise ArgumentError, 'invalid commands'
       end
-    }
+    end
     "#{@x_pos} #{@y_pos} #{@direction}"
   end
 
@@ -31,10 +32,25 @@ class MarsRover
   end
 
   def turn_left
-    @direction = $directions[($directions.find_index(@direction)+3) % $directions.length]
+    @direction = DIRECTIONS[(DIRECTIONS.find_index(@direction)+3) % DIRECTIONS.length]
   end
 
   def turn_right
-    @direction = $directions[($directions.find_index(@direction)+1) % $directions.length]
+    @direction = DIRECTIONS[(DIRECTIONS.find_index(@direction)+1) % DIRECTIONS.length]
   end
+#
+#   def run
+#     while (line = gets) != "quit\n"
+#       begin
+#         puts execute(line.chomp)
+#       rescue Exception => e
+#         p e
+#         line = gets
+#         exit(1) if line == "quit\n"
+#         retry
+#       end
+#     end
+#   end
 end
+
+# MarsRover.new(1,1,'N').run
