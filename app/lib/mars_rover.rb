@@ -1,10 +1,10 @@
 class MarsRover
   DIRECTIONS = %w(N E S W)
-  attr_reader :x_pos, :y_pos, :direction
+  attr_reader :direction
+  attr_accessor :position
 
-  def initialize(x, y, direction)
-    @x_pos = x
-    @y_pos = y
+  def initialize(position, direction)
+    @position = position
     @direction = direction
   end
 
@@ -17,18 +17,18 @@ class MarsRover
         turn_right
       elsif directive == 'L'
         turn_left
-      # else
-      #   raise ArgumentError, 'invalid commands'
+      else
+        raise ArgumentError, 'invalid commands'
       end
     end
-    "#{@x_pos} #{@y_pos} #{@direction}"
+    "#{@position} #{@direction}"
   end
 
   def move
-    @y_pos = @y_pos + 1 if @direction == 'N'
-    @x_pos = @x_pos + 1 if @direction == 'E'
-    @y_pos = @y_pos - 1 if @direction == 'S'
-    @x_pos = @x_pos - 1 if @direction == 'W'
+    @position = Position.new(@position.x_pos, @position.y_pos + 1) if @direction == 'N'
+    @position = Position.new(@position.x_pos + 1, @position.y_pos) if @direction == 'E'
+    @position = Position.new(@position.x_pos, @position.y_pos - 1) if @direction == 'S'
+    @position = Position.new(@position.x_pos - 1, @position.y_pos) if @direction == 'W'
   end
 
   def turn_left

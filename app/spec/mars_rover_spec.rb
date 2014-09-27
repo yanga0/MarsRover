@@ -1,8 +1,9 @@
 require 'mars_rover'
+require_relative '../lib/position'
 
 describe 'MarsRover' do
   before :each do
-    @rover = MarsRover.new(1, 1, 'N')
+    @rover = MarsRover.new(Position.new(1, 1), 'N')
   end
 
   it 'should move rover around' do
@@ -22,11 +23,9 @@ describe 'MarsRover' do
     @rover.execute('LRLRLRLR').should == '1 1 N'
   end
 
-  # it 'should reject invalid arguments' do
-  #   begin
-  #     expect @rover.execute('sth. invalid').to ArgumentError, 'invalid commands'
-  #   rescue Exception => e
-  #     p e.message
-  #   end
-  # end
+  it 'should reject invalid arguments' do
+    expect { @rover.execute('sth. invalid') }.to raise_error(ArgumentError)
+    # or RSpec 1 Syntax:
+    # lambda { @rover.execute('sth. invalid') }.should raise_error(ArgumentError)
+  end
 end
